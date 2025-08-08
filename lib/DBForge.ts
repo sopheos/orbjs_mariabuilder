@@ -127,7 +127,7 @@ export default class DBForge {
     renameTable(from: string, to: string): string {
         from = this.quoteIdentifier(from);
         to = this.quoteIdentifier(to);
-        return this.query(`ALTER TABLE ${from} RENAME TO ${to}`);
+        return this.query(`ALTER TABLE ${from} RENAME TO ${to};`);
     }
 
     alterTable(name: string): string {
@@ -272,7 +272,7 @@ export default class DBForge {
         }
 
         const tmp: string =
-            `"CONSTRAINT \`%s_${field}_fk\`` +
+            `CONSTRAINT \`%s_${field}_fk\`` +
             ` FOREIGN KEY (\`${field}\`)` +
             ` REFERENCES %s\`${target_array[0]}\` (\`${target_array[1]}\`)` +
             ` ON DELETE ${del}` +
