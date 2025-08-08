@@ -275,7 +275,7 @@ export default class QB {
      *     with other methods that may use the "IGNORE" keyword.
      * @returns {QBFrag} A query fragment representing the SQL REPLACE query for multiple records.
      */
-    replaceAll(data: { [key: string]: any }[], ignore: boolean): QBFrag {
+    replaceAll(data: { [key: string]: any }[]): QBFrag {
         return this.batch(data, "REPLACE");
     }
 
@@ -293,7 +293,7 @@ export default class QB {
         if (!data.length) return query;
 
         const keys: string[] = Object.keys(data[0]);
-        const valStmt: string = "( ?" + ", ?".repeat(keys.length - 1) + " )";
+        const valStmt: string = "(?" + ",?".repeat(keys.length - 1) + ")";
 
         query.pushStatment(`${keyword} INTO ${this.from} (${[keys]}) VALUES`);
         for (let i = 0; i < data.length; i++) {
