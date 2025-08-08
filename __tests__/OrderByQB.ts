@@ -69,3 +69,39 @@ test("Order by desc custom", () => {
     expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE nb_award\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\t\tELSE 100\n\tEND DESC;");
     expect(res.getData()).toEqual([15]);
 })
+
+test("Complex order by custom", () => {
+    const res = QB
+    .from("test")
+    .orderBy()
+    .ascCustom("",
+        [{
+            condition: "0",
+            priority: 99
+        },
+        {
+            condition: "?",
+            priority: 0
+        }],
+        null,
+        15
+    )
+    .descCustom("",
+        [{
+            condition: "0",
+            priority: "bo"
+        }],
+        "ba"
+    )
+    .ascCustom("",
+        []
+    )
+    .descCustom("",
+        []
+    )
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\tEND ASC,\n\tCASE\n\t\tWHEN 0 THEN bo\n\t\tELSE ba\n\tEND DESC,\n\tCASE\n\tEND ASC,\n\tCASE\n\tEND DESC;");
+    expect(res.getData()).toEqual([15]);
+})
