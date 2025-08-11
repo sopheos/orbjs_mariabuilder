@@ -28,7 +28,7 @@ const pool: Pool = createPool({
 const query: QBFrag = QB
 .from("users")
 .select()
-.table("username")
+.column("username")
 .getParent()
 .where()
 .andInf("id", 15)
