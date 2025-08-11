@@ -7,5 +7,25 @@
         "@types/jest": "^30.0.0",
         "jest": "^30.0.5",
         "ts-jest": "^29.4.1"
-    }
+    },
+    "name": "mariabuilder",
+    "version": "1.0.0",
+    "description": "A querry builder for mariadb",
+    "main": "index.ts",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "jest --workerThreads --coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sopheos/orbjs_mariabuilder.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sopheos/orbjs_mariabuilder/issues"
+    },
+    "homepage": "https://github.com/sopheos/orbjs_mariabuilder#readme"
 }
