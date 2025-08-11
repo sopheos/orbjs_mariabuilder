@@ -23,7 +23,7 @@ test("Select multiple column", () => {
     const res = QB
     .from("test")
     .select()
-    .table("Hello", "World")
+    .column("Hello", "World")
     .getParent()
     .read();
 
