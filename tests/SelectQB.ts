@@ -1,15 +1,5 @@
 import QB from "#/QB"
 
-// copier coller
-// test("Simple select *", () => {
-//     const res = QB
-//     .from("test")
-//     .read();
-
-//     expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest;");
-//     expect(res.getData()).toEqual([]);
-// })
-
 test("Simple select *", () => {
     const res = QB
     .from("test")

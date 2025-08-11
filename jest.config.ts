@@ -7,7 +7,15 @@ const jestConfig: Config = {
         '^\#/(.*)$': '<rootDir>/lib/$1'
     },
     testEnvironment: "node",
-    transform: {...tsJestTransformCfg}
+    transform: {...tsJestTransformCfg},
+    verbose: true,
+    collectCoverage: true,
+    collectCoverageFrom: ["./lib/**"],
+    errorOnDeprecated: true,
+    randomize: true,
+    showSeed: true,
+    slowTestThreshold: 10,
+    testRegex: "(/tests/.*|(\\.|/)(test|spec))\\.[mc]?[jt]sx?$"
 }
 
 export default jestConfig

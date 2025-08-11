@@ -16,7 +16,7 @@
         "lib": "lib"
     },
     "scripts": {
-        "test": "jest --workerThreads --coverage"
+        "test": "jest"
     },
     "repository": {
         "type": "git",

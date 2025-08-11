@@ -93,10 +93,10 @@ test("Complex order by custom", () => {
         }],
         "ba"
     )
-    .ascCustom("",
+    .ascCustom(undefined,
         []
     )
-    .descCustom("",
+    .descCustom(undefined,
         []
     )
     .getParent()

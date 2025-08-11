@@ -178,3 +178,15 @@ test("Insert ALL no data", () => {
     expect(res.getStatment()).toEqual("");
     expect(res.getData()).toEqual([]);
 })
+
+test("Get parent of result", () => {
+    expect(() => {
+    QB
+    .from("test")
+    .where()
+    .andEq("id", 1)
+    .getParent()
+    .read()
+    .getParent();
+    }).toThrow("No parent found");
+})

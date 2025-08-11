@@ -1,4 +1,5 @@
 import QB from "#/QB"
+import QBFrag from "#/QBFrag/QBFrag";
 
 test("Simple Where", () => {
     const res = QB
@@ -72,12 +73,12 @@ test("Where in", () => {
     .from("test")
     .where()
     .andIn("id", [1, 2, 3])
-    .orIn("id", [1, 2, 3])
+    .orIn(["you", "me"], [["jean", "michel"], ["john", "david"]])
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid IN (?, ?, ?)\n\tOR id IN (?, ?, ?);");
-    expect(res.getData()).toEqual([1, 2, 3, 1, 2, 3]);
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid IN (?, ?, ?)\n\tOR (you, me) IN (\n\t\t(?, ?),\n\t\t(?, ?)\n\t);");
+    expect(res.getData()).toEqual([1, 2, 3, "jean", "michel", "john", "david"]);
 })
 
 test("Where not in", () => {
@@ -85,12 +86,12 @@ test("Where not in", () => {
     .from("test")
     .where()
     .andNotIn("id", [1, 2, 3])
-    .orNotIn("id", [1, 2, 3])
+    .orNotIn(["you", "me"], [["jean", "michel"], ["john", "david"]])
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid NOT IN (?, ?, ?)\n\tOR id NOT IN (?, ?, ?);");
-    expect(res.getData()).toEqual([1, 2, 3, 1, 2, 3]);
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid NOT IN (?, ?, ?)\n\tOR (you, me) NOT IN (\n\t\t(?, ?),\n\t\t(?, ?)\n\t);");
+    expect(res.getData()).toEqual([1, 2, 3, "jean", "michel", "john", "david"]);
 })
 
 test("Where superior", () => {
@@ -187,5 +188,55 @@ test("Where parenthesis", () => {
     .read();
 
     expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid = ?\n\tAND (\n\t\tid = ?\n\t\tOR id = ?\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
+    expect(res.getData()).toEqual([1, 2, 3, "T%", "T%"]);
+})
+
+test("Where not null", () => {
+    const res = QB
+    .from("test")
+    .where()
+    .andNot("id")
+    .orNot("id")
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid IS NOT NULL\n\tOR id IS NOT NULL;");
+    expect(res.getData()).toEqual([]);
+})
+
+test("Where in subquery", () => {
+    const subquery: QBFrag = QB.from("hey").read();
+    const res = QB
+    .from("test")
+    .where()
+    .andIn("id", subquery)
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid IN (\n\t\tSELECT\n\t\t\t*\n\t\tFROM\n\t\t\they;\n\t);");
+    expect(res.getData()).toEqual([]);
+})
+
+test("Where multiple groups", () => {
+    const res = QB
+    .from("test")
+    .where()
+    .and("id = ?", 1)
+    .andGroupStart()
+    .andGroupStart()
+    .or("id = ?", 2)
+    .or("id = ?", 3)
+    .groupEnd()
+    .orGroupStart()
+    .andLike("days", "T%")
+    .andNotLike("days", "T%")
+    .groupEnd()
+    .groupEnd()
+    .groupEnd()
+    .groupEnd()
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nWHERE\n\tid = ?\n\tAND (\n\t\t(\n\t\t\tid = ?\n\t\t\tOR id = ?\n\t\t)\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
     expect(res.getData()).toEqual([1, 2, 3, "T%", "T%"]);
 })

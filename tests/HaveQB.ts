@@ -1,4 +1,5 @@
 import QB from "#/QB"
+import QBFrag from "#/QBFrag/QBFrag";
 
 test("Simple Have", () => {
     const res = QB
@@ -187,5 +188,55 @@ test("Have parenthesis", () => {
     .read();
 
     expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tAND (\n\t\tid = ?\n\t\tOR id = ?\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
+    expect(res.getData()).toEqual([1, 2, 3, "T%", "T%"]);
+})
+
+test("Have not null", () => {
+    const res = QB
+    .from("test")
+    .having()
+    .andNot("id")
+    .orNot("id")
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NOT NULL\n\tOR id IS NOT NULL;");
+    expect(res.getData()).toEqual([]);
+})
+
+test("Have in subquery", () => {
+    const subquery: QBFrag = QB.from("hey").read();
+    const res = QB
+    .from("test")
+    .having()
+    .andIn("id", subquery)
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IN (\n\t\tSELECT\n\t\t\t*\n\t\tFROM\n\t\t\they;\n\t);");
+    expect(res.getData()).toEqual([]);
+})
+
+test("Have multiple groups", () => {
+    const res = QB
+    .from("test")
+    .having()
+    .and("id = ?", 1)
+    .andGroupStart()
+    .andGroupStart()
+    .or("id = ?", 2)
+    .or("id = ?", 3)
+    .groupEnd()
+    .orGroupStart()
+    .andLike("days", "T%")
+    .andNotLike("days", "T%")
+    .groupEnd()
+    .groupEnd()
+    .groupEnd()
+    .groupEnd()
+    .getParent()
+    .read();
+
+    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tAND (\n\t\t(\n\t\t\tid = ?\n\t\t\tOR id = ?\n\t\t)\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
     expect(res.getData()).toEqual([1, 2, 3, "T%", "T%"]);
 })
