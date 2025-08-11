@@ -161,3 +161,61 @@ test("drop index foreign keys", () => {
 
     expect(db).toEqual("ALTER TABLE `Table` \n\tDROP INDEX `Table_id_book_fk_idx`,\n\tDROP INDEX `Table_id_author_fk_idx`;");
 })
+
+test("add table advanced", () => {
+    const db = DBForge
+    .create()
+    .addColumn("id", (col) => {
+        col
+        .autoIncrement()
+        .int("BIG")
+        .first()
+        .comment("ehehe")
+    })
+    .addColumn("bookName", (col) => {
+        col
+        .after("id")
+        .varchar(255)
+    })
+    .addColumn('authorName', (col) => {
+        col
+        .after("bookName")
+        .text()
+        .notNull();
+    })
+    .addColumn('price', (col) => {
+        col
+        .after("authorName")
+        .float()
+        .notNull()
+        .defaultValue(0.00);
+    })
+    .addColumn('created_at', (col) => {
+        col
+        .after("price")
+        .timestamp()
+        .notNull();
+    })
+    .addColumn('updated_at', (col) => {
+        col
+        .after("created_at")
+        .datetime()
+        .notNull();
+    })
+    .addColumn('created_by', (col) => {
+        col
+        .blob()
+    })
+    .createTable("book", "parfaite");
+    
+    expect(db).toEqual("CREATE TABLE IF NOT EXISTS `book` (" +
+        "\n\t`id` BIGINT NOT NULL AUTO_INCREMENT COMMENT 'ehehe' FIRST," +
+        "\n\t`bookName` VARCHAR(255) NULL DEFAULT NULL AFTER `id`," +
+        "\n\t`authorName` TEXT NOT NULL AFTER `bookName`," +
+        "\n\t`price` FLOAT NOT NULL DEFAULT 0 AFTER `authorName`," +
+        "\n\t`created_at` TIMESTAMP NOT NULL AFTER `price`," +
+        "\n\t`updated_at` DATETIME NOT NULL AFTER `created_at`," +
+        "\n\t`created_by` BLOB NULL DEFAULT NULL" +
+      "\n)" +
+         "\n\t COMMENT 'parfaite';")
+})
