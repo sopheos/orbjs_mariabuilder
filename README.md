@@ -7,7 +7,10 @@ A simple mariadb query builder for [Node.js](https://nodejs.org/)
 ### Installation
 
 Installation is done by using npm :  
-`npm install mariabuilder`
+
+```text
+npm install mariabuilder
+```
 
 ### Example
 
