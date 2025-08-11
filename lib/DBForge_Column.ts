@@ -83,9 +83,9 @@ export default class DBForgeColumn {
     }
 
     defaultValue(value: any, quote: boolean = true): this {
-        if (quote && value instanceof String) {
+        if (quote && typeof value === "string") {
             this.defaultCol =
-                value !== "" ? "'" + value.replaceAll("'", "''") + "'" : "";
+                value !== "" ? "'" + value.replaceAll("'", "''") + "'" : "``";
         } else {
             this.defaultCol = value;
         }
@@ -108,7 +108,7 @@ export default class DBForgeColumn {
 
     comment(value: string): this {
         this.commentCol =
-            value !== "" ? "'" + value.replaceAll("'", "''") + "'" : "";
+            value !== "" ? "'" + value.replaceAll("'", "''") + "'" : "''";
         return this;
     }
 

@@ -13,7 +13,7 @@ export default class WhereHaveF extends QBFrag {
      * @param {string} keyWord - The keyword to use.
      * Used to create and instance of WHERE and HAVE with the same class.
      */
-    constructor(parent: QB | null = null, keyWord: string) {
+    constructor(parent: QB | null, keyWord: string) {
         super(parent);
         this.keyWord = keyWord;
     }
@@ -455,7 +455,7 @@ export default class WhereHaveF extends QBFrag {
             data = values.getData();
             return this.add(
                 prefix,
-                `${column} ${operator} (${statment})`,
+                `${column} ${operator} (\n\t\t${statment.replaceAll("\n", "\n" + "\t".repeat(this.groupLevel + 2))}\n\t)`,
                 ...data
             );
         }
@@ -509,7 +509,7 @@ export default class WhereHaveF extends QBFrag {
      * @returns {this} The current instance to allow for method chaining.
      */
     private groupDecrease(): this {
-        if (this.groupLevel <= 0) return;
+        if (this.groupLevel <= 0) return this;
         this.statment += "\n" + "\t".repeat(this.groupLevel) + ")";
         this.groupLevel--;
         return this;

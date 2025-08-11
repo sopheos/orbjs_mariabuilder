@@ -12,9 +12,10 @@ export default class QBFrag {
 
     /**
      * Returns the parent query builder
-     * @returns {QB|null} the parent query builder
+     * @returns {QB} the parent query builder
      */
-    getParent(): QB | null {
+    getParent(): QB {
+        if (this.parent === null) throw new Error("No parent found");
         return this.parent;
     }
 
@@ -64,6 +65,7 @@ export default class QBFrag {
         return this;
     }
 
+    /* istanbul ignore next */
     /**
      * Replaces the ? in the statment with the actual values
      * @param {Pool | Connection} db the database connection to use

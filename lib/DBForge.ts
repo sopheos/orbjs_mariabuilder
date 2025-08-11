@@ -9,12 +9,12 @@ export default class DBForge {
             name: string;
             col: DBForgeColumn;
         }[];
-    };
+    } = {add: [], drop: [], change: []};
 
     private primary: {
         add: string[];
         drop: boolean;
-    };
+    } = {add: [], drop: false};
 
     private keys: {
         add: {
@@ -23,18 +23,14 @@ export default class DBForge {
             colums: string;
         }[];
         drop: string[];
-    };
+    } = {add:[], drop:[]};
 
     private foreign: {
         add: string[];
         drop: string[];
-    };
+    } = {add: [], drop: []};
 
-    private statment: string;
-
-    constructor() {
-        this.reset();
-    }
+    private statment: string = "";
 
     static create(): DBForge {
         return new DBForge();
@@ -140,7 +136,7 @@ export default class DBForge {
         }
 
         for (const col of this.columns.add) {
-            rows.push(`ADD COLUMN \`${col.toString()}\``);
+            rows.push(`ADD COLUMN ${col.toString()}`);
         }
 
         for (const col of this.columns.change) {
@@ -216,7 +212,7 @@ export default class DBForge {
     ): this {
         if (new_name === "") new_name = name;
 
-        let col = new DBForgeColumn(name);
+        let col = new DBForgeColumn(new_name);
         this.columns.change.push({ name, col });
         if (callback !== null) {
             callback(col);
@@ -332,18 +328,13 @@ export default class DBForge {
 
     private explodeName(name: string): { db: string; table: string } {
         let splited: string[] = name.split(".");
-        switch (splited.length) {
-            case 0:
-                return { db: "", table: "" };
-            case 1:
-                return { db: "", table: splited[0] };
-            default:
-                return { db: splited[0], table: splited[1] };
+        if (splited.length === 1) {
+            return { db: "", table: splited[0] };
         }
+        return { db: splited[0], table: splited[1] };
     }
 
     private quote(value: string): string {
-        if (value === "") return value;
         return "'" + value.replaceAll("'", "''") + "'";
     }
 

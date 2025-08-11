@@ -95,9 +95,9 @@ export default class OrderByF extends QBFrag {
      */
     private addCustom(
         order: "ASC" | "DESC",
-        column: string = "",
+        column: string,
         when: { condition: string; priority: string | number }[],
-        defaultPriority: string | number | null = null,
+        defaultPriority: string | number | null,
         ...data: any[]
     ): this {
         if (this.statment === "") {
