@@ -44,3 +44,7 @@ try {
     console.log(e);
 }
 ```
+
+## See More
+
+You can see the [guide](./docs/guide.md) on how to use the module or the API documentation.
