@@ -1,16 +1,12 @@
 {
-    "dependencies": {
-        "mariadb": "^3.4.5",
-        "typescript": "^5.9.2"
-    },
-    "devDependencies": {
-        "@types/jest": "^30.0.0",
-        "jest": "^30.0.5",
-        "ts-jest": "^29.4.1"
-    },
-    "name": "mariabuilder",
+    "name": "@sopheos/mariabuilder",
     "version": "1.0.0",
     "description": "A querry builder for mariadb",
+    "license": "MIT",
+    "author": "Sopheos <dev@sopheos.com>",
+    "contributors": [
+        "Antoine MALGAT <antoinemalgat68@gmail.com>"
+    ],
     "main": "index.ts",
     "directories": {
         "lib": "lib"
@@ -22,11 +18,6 @@
         "type": "git",
         "url": "git+https://github.com/sopheos/orbjs_mariabuilder.git"
     },
-    "author": "Sopheos <dev@sopheos.com>",
-    "contributors": [
-        "Antoine MALGAT <antoinemalgat68@gmail.com>"
-    ],
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/sopheos/orbjs_mariabuilder/issues"
     },
@@ -38,5 +29,14 @@
         "db",
         "database",
         "mariadb"
-    ]
+    ],
+    "dependencies": {
+        "mariadb": "^3.4.5",
+        "typescript": "^5.9.2"
+    },
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "jest": "^30.0.5",
+        "ts-jest": "^29.4.1"
+    }
 }
