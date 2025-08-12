@@ -27,5 +27,13 @@
     "bugs": {
         "url": "https://github.com/sopheos/orbjs_mariabuilder/issues"
     },
-    "homepage": "https://github.com/sopheos/orbjs_mariabuilder#readme"
+    "homepage": "https://github.com/sopheos/orbjs_mariabuilder#readme",
+    "keywords": [
+        "query",
+        "builder",
+        "build",
+        "db",
+        "database",
+        "mariadb"
+    ]
 }
