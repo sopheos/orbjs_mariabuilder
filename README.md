@@ -1,4 +1,4 @@
-# orbjs_mariabuilder
+# mariabuilder
 
 A simple mariadb query builder for [Node.js](https://nodejs.org/)  
 
@@ -9,7 +9,7 @@ A simple mariadb query builder for [Node.js](https://nodejs.org/)
 Installation is done by using npm :  
 
 ```sh
-npm install mariabuilder
+npm install @sopheos/mariabuilder
 ```
 
 ### Example
