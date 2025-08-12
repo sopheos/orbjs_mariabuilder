@@ -16,6 +16,7 @@ This guide cover the basic to know on how the module is thinked to be used. It w
 
 The main goal of this module is to help the developper forming his SQL request by adding an abstraction layer.
 It does not do the request to your database but only create the statment and the list of data to be given.  
+All of the class always return themself if the methode used is not and ending one (I.E. the insert instruction or alter table)  
 
 ## Main components
 
