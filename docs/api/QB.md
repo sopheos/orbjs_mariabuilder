@@ -3,7 +3,10 @@
 Here you will find all the methods attached to the QB class.  
 Note that you can **exit** all subclasse using the method `.getParent()`, it is not show in every method to avoid redundancy.  
 
+## Table of Content
+
 - [Query Builder](#query-builder)
+  - [Table of Content](#table-of-content)
   - [From](#from)
     - [.from(tableName)](#fromtablename)
   - [GroupBy](#groupby)
