@@ -189,7 +189,6 @@ export default class QB {
         query.pushStatment(`DELETE FROM\n\t${this.from}`);
         query.merge(this.JoinF);
         query.merge(this.whereF);
-        query.pushStatment(this.groupByStmt);
         query.pushStatment(this.groupByStmt + this.limitStmt + ";");
 
         return query;

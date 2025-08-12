@@ -99,14 +99,14 @@ export default class WhereHaveF extends QBFrag {
      * it checks if the statement is NULL.
      *
      * @param {string} statment - The condition to be checked for equality or NULL.
-     * @param {...any[]} data - The values to be compared for equality.
+     * @param {any} data - The values to be compared for equality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    andEq(statment: string, ...data: any[]): this {
-        if (data.length === 0) {
+    andEq(statment: string, data: any): this {
+        if (data === null) {
             return this.andNull(statment);
         }
-        return this.add("AND", statment + " = ?", ...data);
+        return this.add("AND", statment + " = ?", data);
     }
 
     /**
@@ -115,14 +115,14 @@ export default class WhereHaveF extends QBFrag {
      * it checks if the statement is NULL.
      *
      * @param {string} statment - The condition to be checked for equality or NULL.
-     * @param {...any[]} data - The values to be compared for equality.
+     * @param {any} data - The values to be compared for equality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    orEq(statment: string, ...data: any[]): this {
-        if (data.length === 0) {
+    orEq(statment: string, data: any): this {
+        if (data === null) {
             return this.orNull(statment);
         }
-        return this.add("OR", statment + " = ?", ...data);
+        return this.add("OR", statment + " = ?", data);
     }
 
     /**
@@ -131,14 +131,14 @@ export default class WhereHaveF extends QBFrag {
      * it checks if the statement is NOT NULL.
      *
      * @param {string} statment - The condition to be checked for inequality or NOT NULL.
-     * @param {...any[]} data - The values to be compared for inequality.
+     * @param {any} data - The values to be compared for inequality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    andNot(statment: string, ...data: any[]): this {
-        if (data.length === 0) {
+    andNot(statment: string, data: any): this {
+        if (data === null) {
             return this.andNotNull(statment);
         }
-        return this.add("AND", statment + " <> ?", ...data);
+        return this.add("AND", statment + " <> ?", data);
     }
 
     /**
@@ -147,14 +147,14 @@ export default class WhereHaveF extends QBFrag {
      * it checks if the statement is NOT NULL.
      *
      * @param {string} statment - The condition to be checked for inequality or NOT NULL.
-     * @param {...any[]} data - The values to be compared for inequality.
+     * @param {any} data - The values to be compared for inequality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    orNot(statment: string, ...data: any[]): this {
-        if (data.length === 0) {
+    orNot(statment: string, data: any): this {
+        if (data === null) {
             return this.orNotNull(statment);
         }
-        return this.add("OR", statment + " <> ?", ...data);
+        return this.add("OR", statment + " <> ?", data);
     }
 
     /**
@@ -162,11 +162,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is strictly superior to a value.
      *
      * @param {string} statment - The condition to be checked for superiority.
-     * @param {...any[]} data - The values to be compared for superiority.
+     * @param {any} data - The values to be compared for superiority.
      * @returns {this} The current instance to allow for method chaining.
      */
-    andSup(statment: string, ...data: any[]): this {
-        return this.add("AND", statment + " > ?", ...data);
+    andSup(statment: string, data: any): this {
+        return this.add("AND", statment + " > ?", data);
     }
 
     /**
@@ -174,11 +174,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is strictly superior to a value.
      *
      * @param {string} statment - The condition to be checked for superiority.
-     * @param {...any[]} data - The values to be compared for superiority.
+     * @param {any} data - The values to be compared for superiority.
      * @returns {this} The current instance to allow for method chaining.
      */
-    orSup(statment: string, ...data: any[]): this {
-        return this.add("OR", statment + " > ?", ...data);
+    orSup(statment: string, data: any): this {
+        return this.add("OR", statment + " > ?", data);
     }
 
     /**
@@ -186,11 +186,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is strictly inferior to a value.
      *
      * @param {string} statment - The condition to be checked for inferiority.
-     * @param {...any[]} data - The values to be compared for inferiority.
+     * @param {any} data - The values to be compared for inferiority.
      * @returns {this} The current instance to allow for method chaining.
      */
-    andInf(statment: string, ...data: any[]): this {
-        return this.add("AND", statment + " < ?", ...data);
+    andInf(statment: string, data: any): this {
+        return this.add("AND", statment + " < ?", data);
     }
 
     /**
@@ -198,11 +198,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is strictly inferior to a value.
      *
      * @param {string} statment - The condition to be checked for inferiority.
-     * @param {...any[]} data - The values to be compared for inferiority.
+     * @param {any} data - The values to be compared for inferiority.
      * @returns {this} The current instance to allow for method chaining.
      */
-    orInf(statment: string, ...data: any[]): this {
-        return this.add("OR", statment + " < ?", ...data);
+    orInf(statment: string, data: any): this {
+        return this.add("OR", statment + " < ?", data);
     }
 
     /**
@@ -210,11 +210,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is superior or equal to a value.
      *
      * @param {string} statment - The condition to be checked for superiority or equality.
-     * @param {...any[]} data - The values to be compared for superiority or equality.
+     * @param {any} data - The values to be compared for superiority or equality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    andSupEq(statment: string, ...data: any[]): this {
-        return this.add("AND", statment + " >= ?", ...data);
+    andSupEq(statment: string, data: any): this {
+        return this.add("AND", statment + " >= ?", data);
     }
 
     /**
@@ -222,11 +222,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is superior or equal to a value.
      *
      * @param {string} statment - The condition to be checked for superiority or equality.
-     * @param {...any[]} data - The values to be compared for superiority or equality.
+     * @param {any} data - The values to be compared for superiority or equality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    orSupEq(statment: string, ...data: any[]): this {
-        return this.add("OR", statment + " >= ?", ...data);
+    orSupEq(statment: string, data: any): this {
+        return this.add("OR", statment + " >= ?", data);
     }
 
     /**
@@ -234,11 +234,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is inferior or equal to a value.
      *
      * @param {string} statment - The condition to be checked for inferiority or equality.
-     * @param {...any[]} data - The values to be compared for inferiority or equality.
+     * @param {any} data - The values to be compared for inferiority or equality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    andInfEq(statment: string, ...data: any[]): this {
-        return this.add("AND", statment + " <= ?", ...data);
+    andInfEq(statment: string, data: any): this {
+        return this.add("AND", statment + " <= ?", data);
     }
 
     /**
@@ -246,11 +246,11 @@ export default class WhereHaveF extends QBFrag {
      * if the specified statement is inferior or equal to a value.
      *
      * @param {string} statment - The condition to be checked for inferiority or equality.
-     * @param {...any[]} data - The values to be compared for inferiority or equality.
+     * @param {any} data - The values to be compared for inferiority or equality.
      * @returns {this} The current instance to allow for method chaining.
      */
-    orInfEq(statment: string, ...data: any[]): this {
-        return this.add("OR", statment + " <= ?", ...data);
+    orInfEq(statment: string, data: any): this {
+        return this.add("OR", statment + " <= ?", data);
     }
 
     /**
@@ -451,7 +451,7 @@ export default class WhereHaveF extends QBFrag {
         }
 
         if (values instanceof QBFrag) {
-            statment = values.getStatment();
+            statment = values.getStatement();
             data = values.getData();
             return this.add(
                 prefix,

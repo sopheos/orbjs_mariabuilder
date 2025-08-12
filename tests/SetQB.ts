@@ -9,7 +9,7 @@ test("Simple set", () => {
     .getParent()
     .insert(false);
 
-    expect(res.getStatment()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = ?,\n\tunsafeId = 1;");
+    expect(res.getStatement()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = ?,\n\tunsafeId = 1;");
     expect(res.getData()).toEqual([1]);
 })
 
@@ -22,7 +22,7 @@ test("list set", () => {
     .getParent()
     .insert(false);
 
-    expect(res.getStatment()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = ?,\n\tUnsafeList = ?,\n\tid2 = 1,\n\tUnsafeList2 = 15;");
+    expect(res.getStatement()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = ?,\n\tUnsafeList = ?,\n\tid2 = 1,\n\tUnsafeList2 = 15;");
     expect(res.getData()).toEqual([1, 15]);
 })
 
@@ -34,7 +34,7 @@ test("unsafe set", () => {
     .getParent()
     .insert(false);
 
-    expect(res.getStatment()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = 1;");
+    expect(res.getStatement()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = 1;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -46,7 +46,7 @@ test("unsafe list set", () => {
     .getParent()
     .insert(false);
 
-    expect(res.getStatment()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = 1,\n\tUnsafeList = 15;");
+    expect(res.getStatement()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = 1,\n\tUnsafeList = 15;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -61,6 +61,6 @@ test("increment and decrement", () => {
     .getParent()
     .insert(false);
 
-    expect(res.getStatment()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = id + 10,\n\tid2 = id2 - 10,\n\tid3 = id3 + 1,\n\tid4 = id4 - 1;");
+    expect(res.getStatement()).toEqual("INSERT INTO\n\ttest\nSET\n\tid = id + 10,\n\tid2 = id2 - 10,\n\tid3 = id3 + 1,\n\tid4 = id4 - 1;");
     expect(res.getData()).toEqual([]);
 })

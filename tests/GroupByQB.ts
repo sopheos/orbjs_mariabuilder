@@ -6,6 +6,6 @@ test("Simple group by", () => {
     .groupBy("id", "name")
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nGROUP BY\n\tid,\n\tname;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nGROUP BY\n\tid,\n\tname;");
     expect(res.getData()).toEqual([]);
 })

@@ -8,7 +8,7 @@ test("Cross join", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tCROSS JOIN famousTable;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tCROSS JOIN famousTable;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -20,7 +20,7 @@ test("Inner join", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tINNER JOIN famousTable ON test.id = famousTable.id;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tINNER JOIN famousTable ON test.id = famousTable.id;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -32,7 +32,7 @@ test("Left join", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tLEFT JOIN famousTable ON test.id = famousTable.id;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tLEFT JOIN famousTable ON test.id = famousTable.id;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -44,6 +44,6 @@ test("Right join", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tRIGHT JOIN famousTable ON test.id = famousTable.id;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\n\tRIGHT JOIN famousTable ON test.id = famousTable.id;");
     expect(res.getData()).toEqual([]);
 })

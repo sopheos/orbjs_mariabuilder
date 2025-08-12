@@ -5,7 +5,7 @@ test("Simple select *", () => {
     .from("test")
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -17,7 +17,7 @@ test("Select multiple column", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\tHello\n\tWorld\nFROM\n\ttest;");
+    expect(res.getStatement()).toEqual("SELECT\n\tHello\n\tWorld\nFROM\n\ttest;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -29,7 +29,7 @@ test("Select distinct rows", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT DISTINCT\n\t*\nFROM\n\ttest;");
+    expect(res.getStatement()).toEqual("SELECT DISTINCT\n\t*\nFROM\n\ttest;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -41,6 +41,6 @@ test("Select all rows", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest;");
     expect(res.getData()).toEqual([]);
 })

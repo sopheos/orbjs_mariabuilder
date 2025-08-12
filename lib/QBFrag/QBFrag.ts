@@ -33,7 +33,7 @@ export default class QBFrag {
      * Returns the SQL statment of the fragment
      * @returns {string} the SQL statment
      */
-    getStatment(): string {
+    getStatement(): string {
         return this.statment;
     }
 

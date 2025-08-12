@@ -10,7 +10,7 @@ test("Simple Have", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tOR id = ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tOR id = ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -23,7 +23,7 @@ test("Have equal", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tOR id = ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tOR id = ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -33,12 +33,12 @@ test("Have equal null", () => {
     .having()
     .andNull("id")
     .orNull("id")
-    .andEq("id")
-    .orEq("id")
+    .andEq("id", null)
+    .orEq("id", null)
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NULL\n\tOR id IS NULL\n\tAND id IS NULL\n\tOR id IS NULL;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NULL\n\tOR id IS NULL\n\tAND id IS NULL\n\tOR id IS NULL;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -51,7 +51,7 @@ test("Have not equal null", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NOT NULL\n\tOR id IS NOT NULL;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NOT NULL\n\tOR id IS NOT NULL;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -64,7 +64,7 @@ test("Have not equal", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid <> ?\n\tOR id <> ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid <> ?\n\tOR id <> ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -77,7 +77,7 @@ test("Have in", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IN (?, ?, ?)\n\tOR id IN (?, ?, ?);");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IN (?, ?, ?)\n\tOR id IN (?, ?, ?);");
     expect(res.getData()).toEqual([1, 2, 3, 1, 2, 3]);
 })
 
@@ -90,7 +90,7 @@ test("Have not in", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid NOT IN (?, ?, ?)\n\tOR id NOT IN (?, ?, ?);");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid NOT IN (?, ?, ?)\n\tOR id NOT IN (?, ?, ?);");
     expect(res.getData()).toEqual([1, 2, 3, 1, 2, 3]);
 })
 
@@ -103,7 +103,7 @@ test("Have superior", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid > ?\n\tOR id > ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid > ?\n\tOR id > ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -116,7 +116,7 @@ test("Have inferior", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid < ?\n\tOR id < ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid < ?\n\tOR id < ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -129,7 +129,7 @@ test("Have superior equal", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid >= ?\n\tOR id >= ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid >= ?\n\tOR id >= ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -142,7 +142,7 @@ test("Have inferior equal", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid <= ?\n\tOR id <= ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid <= ?\n\tOR id <= ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -155,7 +155,7 @@ test("Have like", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tdays LIKE ?\n\tOR days LIKE ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tdays LIKE ?\n\tOR days LIKE ?;");
     expect(res.getData()).toEqual(["T%", "T%"]);
 })
 
@@ -168,7 +168,7 @@ test("Have not like", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tdays NOT LIKE ?\n\tOR days NOT LIKE ?;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tdays NOT LIKE ?\n\tOR days NOT LIKE ?;");
     expect(res.getData()).toEqual(["T%", "T%"]);
 })
 
@@ -187,7 +187,7 @@ test("Have parenthesis", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tAND (\n\t\tid = ?\n\t\tOR id = ?\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tAND (\n\t\tid = ?\n\t\tOR id = ?\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
     expect(res.getData()).toEqual([1, 2, 3, "T%", "T%"]);
 })
 
@@ -195,12 +195,12 @@ test("Have not null", () => {
     const res = QB
     .from("test")
     .having()
-    .andNot("id")
-    .orNot("id")
+    .andNot("id", null)
+    .orNot("id", null)
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NOT NULL\n\tOR id IS NOT NULL;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IS NOT NULL\n\tOR id IS NOT NULL;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -213,7 +213,7 @@ test("Have in subquery", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IN (\n\t\tSELECT\n\t\t\t*\n\t\tFROM\n\t\t\they;\n\t);");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid IN (\n\t\tSELECT\n\t\t\t*\n\t\tFROM\n\t\t\they;\n\t);");
     expect(res.getData()).toEqual([]);
 })
 
@@ -237,6 +237,6 @@ test("Have multiple groups", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tAND (\n\t\t(\n\t\t\tid = ?\n\t\t\tOR id = ?\n\t\t)\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nHAVING\n\tid = ?\n\tAND (\n\t\t(\n\t\t\tid = ?\n\t\t\tOR id = ?\n\t\t)\n\t\tOR (\n\t\t\tdays LIKE ?\n\t\t\tAND days NOT LIKE ?\n\t\t)\n\t);");
     expect(res.getData()).toEqual([1, 2, 3, "T%", "T%"]);
 })

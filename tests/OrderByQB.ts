@@ -8,7 +8,7 @@ test("Order by asc", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tHello ASC,\n\tWorld ASC;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tHello ASC,\n\tWorld ASC;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -20,7 +20,7 @@ test("Order by desc", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tHello DESC,\n\tWorld DESC;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tHello DESC,\n\tWorld DESC;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -43,7 +43,7 @@ test("Order by asc custom", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE nb_award\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\t\tELSE 100\n\tEND ASC;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE nb_award\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\t\tELSE 100\n\tEND ASC;");
     expect(res.getData()).toEqual([15]);
 })
 
@@ -66,7 +66,7 @@ test("Order by desc custom", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE nb_award\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\t\tELSE 100\n\tEND DESC;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE nb_award\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\t\tELSE 100\n\tEND DESC;");
     expect(res.getData()).toEqual([15]);
 })
 
@@ -102,6 +102,6 @@ test("Complex order by custom", () => {
     .getParent()
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\tEND ASC,\n\tCASE\n\t\tWHEN 0 THEN bo\n\t\tELSE ba\n\tEND DESC,\n\tCASE\n\tEND ASC,\n\tCASE\n\tEND DESC;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nORDER BY\n\tCASE\n\t\tWHEN 0 THEN 99\n\t\tWHEN ? THEN 0\n\tEND ASC,\n\tCASE\n\t\tWHEN 0 THEN bo\n\t\tELSE ba\n\tEND DESC,\n\tCASE\n\tEND ASC,\n\tCASE\n\tEND DESC;");
     expect(res.getData()).toEqual([15]);
 })

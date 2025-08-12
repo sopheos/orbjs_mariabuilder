@@ -6,7 +6,7 @@ test("Simple Limit", () => {
     .limit(1)
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nLIMIT\n\t1;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nLIMIT\n\t1;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -16,7 +16,7 @@ test("Limit offset", () => {
     .limit(1, 1)
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nLIMIT\n\t1\nOFFSET\n\t1;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nLIMIT\n\t1\nOFFSET\n\t1;");
     expect(res.getData()).toEqual([]);
 })
 
@@ -26,7 +26,7 @@ test("Limit offset incorect", () => {
     .limit(-1, 1)
     .read();
 
-    expect(res.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nOFFSET\n\t1;");
+    expect(res.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nOFFSET\n\t1;");
     expect(res.getData()).toEqual([]);
 
     const res2 = QB
@@ -34,6 +34,6 @@ test("Limit offset incorect", () => {
     .limit(1, -1)
     .read();
 
-    expect(res2.getStatment()).toEqual("SELECT\n\t*\nFROM\n\ttest\nLIMIT\n\t1;");
+    expect(res2.getStatement()).toEqual("SELECT\n\t*\nFROM\n\ttest\nLIMIT\n\t1;");
     expect(res2.getData()).toEqual([]);
 })
