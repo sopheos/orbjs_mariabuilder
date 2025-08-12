@@ -1,6 +1,6 @@
 {
     "name": "@sopheos/mariabuilder",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A querry builder for mariadb",
     "license": "MIT",
     "author": "Sopheos <dev@sopheos.com>",
