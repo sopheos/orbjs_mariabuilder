@@ -38,7 +38,7 @@ export default class QB {
      * @param {string} from - The name of the table to perform queries on.
      * @returns {QB} A new instance of the query builder initialized with the specified table name.
      */
-    static from(from: string) {
+    static from(from: string): QB {
         const QB = new this(from);
         return QB;
     }
