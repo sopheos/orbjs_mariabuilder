@@ -207,12 +207,12 @@ export default class DBForge {
 
     changeColumn(
         name: string,
-        new_name: string = "",
+        newName: string = "",
         callback: null | ((col: DBForgeColumn) => void)
     ): this {
-        if (new_name === "") new_name = name;
+        if (newName === "") newName = name;
 
-        let col = new DBForgeColumn(new_name);
+        let col = new DBForgeColumn(newName);
         this.columns.change.push({ name, col });
         if (callback !== null) {
             callback(col);
