@@ -8,7 +8,7 @@ A simple mariadb query builder for [Node.js](https://nodejs.org/)
 
 Installation is done by using npm :  
 
-```text
+```sh
 npm install mariabuilder
 ```
 

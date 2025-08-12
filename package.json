@@ -22,7 +22,10 @@
         "type": "git",
         "url": "git+https://github.com/sopheos/orbjs_mariabuilder.git"
     },
-    "author": "",
+    "author": "Sopheos <dev@sopheos.com>",
+    "contributors": [
+        "Antoine MALGAT <antoinemalgat68@gmail.com>"
+    ],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/sopheos/orbjs_mariabuilder/issues"
