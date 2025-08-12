@@ -444,6 +444,12 @@ DBForge
 
 Drop the index with the name given.
 
+```ts
+DBForge
+.create()
+.dropIndex("my_index");
+```
+
 ### Unique keys
 
 #### .addUnique(name, [{name, asc?}]?)
