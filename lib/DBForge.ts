@@ -1,5 +1,5 @@
 import util from "node:util";
-import DBForgeColumn from "#/DBForge_Column";
+import DBForgeColumn from "./DBForge_Column";
 
 export default class DBForge {
     private columns: {

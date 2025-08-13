@@ -1,5 +1,5 @@
 import { Connection, Pool } from "mariadb/*";
-import QB from "#/QB";
+import QB from "../QB";
 
 export default class QBFrag {
     protected statment: string = "";

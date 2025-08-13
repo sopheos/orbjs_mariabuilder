@@ -1,4 +1,4 @@
-import DBForge from "#/DBForge";
+import DBForge from "./lib/DBForge";
 
 test("create", () => {
     expect(DBForge.create()).toBeInstanceOf(DBForge);

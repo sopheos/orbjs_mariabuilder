@@ -1,14 +1,20 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "rewriteRelativeImportExtensions": true,
-    "esModuleInterop": true,
     "paths": {
-      "#/*": ["./lib/*"]
-    },
+          "./lib/*": ["./lib/*"]
+        },
+    "rewriteRelativeImportExtensions": true,
+    "module": "nodenext",
+    "target": "esnext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "noImplicitAny": true,
-  }
+    "declaration": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "outDir": "./dist"
+  },
+  "include": ["./*"],
+  "exclude": ["./tests", "./jest.config.ts"]
 }

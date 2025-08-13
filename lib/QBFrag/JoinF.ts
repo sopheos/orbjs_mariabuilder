@@ -1,4 +1,4 @@
-import QBFrag from "#/QBFrag/QBFrag";
+import QBFrag from "./QBFrag";
 
 export default class JoinF extends QBFrag {
     /**

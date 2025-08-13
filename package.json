@@ -7,12 +7,17 @@
     "contributors": [
         "Antoine MALGAT <antoinemalgat68@gmail.com>"
     ],
-    "main": "index.ts",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "directories": {
-        "lib": "lib"
+        "lib": "lib",
+        "test": "tests",
+        "doc": "docs"
     },
+    "files": ["dist"],
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "build": "(bash -c \"rm -r ./dist\" && tsc) || tsc"
     },
     "repository": {
         "type": "git",
@@ -30,7 +35,6 @@
         "database",
         "mariadb"
     ],
-    "types": "./index.d.ts",
     "dependencies": {
         "mariadb": "^3.4.5",
         "typescript": "^5.9.2"

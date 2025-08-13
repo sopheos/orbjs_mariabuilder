@@ -1,9 +1,9 @@
-import WhereHaveF from "#/QBFrag/WhereHaveF";
-import QBFrag from "#/QBFrag/QBFrag";
-import OrderByF from "#/QBFrag/OrderByF";
-import JoinF from "#/QBFrag/JoinF";
-import SelectF from "#/QBFrag/SelectF";
-import SetF from "#/QBFrag/SetF";
+import WhereHaveF from "./QBFrag/WhereHaveF";
+import QBFrag from "./QBFrag/QBFrag";
+import OrderByF from "./QBFrag/OrderByF";
+import JoinF from "./QBFrag/JoinF";
+import SelectF from "./QBFrag/SelectF";
+import SetF from "./QBFrag/SetF";
 
 export default class QB {
     private from: string = "";

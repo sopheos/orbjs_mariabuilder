@@ -1,5 +1,5 @@
-import QB from "#/QB";
-import QBFrag from "#/QBFrag/QBFrag";
+import QB from "../QB";
+import QBFrag from "./QBFrag";
 
 export default class WhereHaveF extends QBFrag {
     private groupCount: number = 0;

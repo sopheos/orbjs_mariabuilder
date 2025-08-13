@@ -1,4 +1,4 @@
-import QB from "#/QB"
+import QB from "./lib/QB"
 
 test("Cross join", () => {
     const res = QB
