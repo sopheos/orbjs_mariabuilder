@@ -270,8 +270,6 @@ export default class QB {
      *
      * @param {Object[]} data - An array of records to replace, where each record is an object
      *     with key-value pairs representing column names and their corresponding values.
-     * @param {boolean} ignore - Not used in the current implementation, but included for consistency
-     *     with other methods that may use the "IGNORE" keyword.
      * @returns {QBFrag} A query fragment representing the SQL REPLACE query for multiple records.
      */
     replaceAll(data: { [key: string]: any }[]): QBFrag {

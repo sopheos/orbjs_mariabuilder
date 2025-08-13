@@ -1,6 +1,6 @@
 {
     "name": "@sopheos/mariabuilder",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A querry builder for mariadb",
     "license": "MIT",
     "author": "Sopheos <dev@sopheos.com>",
@@ -30,6 +30,7 @@
         "database",
         "mariadb"
     ],
+    "types": "./index.d.ts",
     "dependencies": {
         "mariadb": "^3.4.5",
         "typescript": "^5.9.2"

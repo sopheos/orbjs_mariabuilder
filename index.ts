@@ -8,4 +8,4 @@ import SelectF from "#/QBFrag/SelectF";
 import SetF from "#/QBFrag/SetF";
 import WhereHaveF from "#/QBFrag/WhereHaveF";
 
-export { DBForge, QB, DBForgeColumn, QBFrag, WhereHaveF, OrderByF, JoinF, SelectF, SetF };
+export { DBForgeColumn, DBForge, QBFrag, WhereHaveF, OrderByF, JoinF, SelectF, SetF, QB };
