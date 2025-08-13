@@ -29,7 +29,7 @@ export class DBForgeColumn {
      * @param {"" | "TINY" | "SMALL" | "MEDIUM" | "BIG"} [prefix=""] The prefix of the type
      * @returns {this}
      */
-    int(prefix: "" | "TINY" | "SMALL" | "MEDIUM" | "BIG"): this;
+    int(prefix?: "" | "TINY" | "SMALL" | "MEDIUM" | "BIG"): this;
     /**
      * Set the type of the column to float.
      * @returns {this}
@@ -42,7 +42,7 @@ export class DBForgeColumn {
      * @param {number} [scale=2] The scale of the decimal
      * @returns {this}
      */
-    decimal(precision: number, scale: number): this;
+    decimal(precision?: number, scale?: number): this;
 
     /**
      * Set the type of the column to char. The length given will be the length of the char.
@@ -56,7 +56,7 @@ export class DBForgeColumn {
      * @param {number} [len=255] The length of the varchar
      * @returns {this}
      */
-    varchar(len: number): this;
+    varchar(len?: number): this;
 
     /**
      * Set the type of the column to text. The prefix can be one of the following: `TINY`, `MEDIUM`, `LONG`.
@@ -64,7 +64,7 @@ export class DBForgeColumn {
      * @param {"" | "TINY" | "MEDIUM" | "LONG"} [prefix=""] The prefix of the type
      * @returns {this}
      */
-    text(prefix: "" | "TINY" | "MEDIUM" | "LONG"): this;
+    text(prefix?: "" | "TINY" | "MEDIUM" | "LONG"): this;
 
     /**
      * Set the type of the column to blob. The prefix can be one of the following: `TINY`, `MEDIUM`, `LONG`.
@@ -72,7 +72,7 @@ export class DBForgeColumn {
      * @param {"" | "TINY" | "MEDIUM" | "LONG"} [prefix=""] The prefix of the type
      * @returns {this}
      */
-    blob(prefix: "" | "TINY" | "MEDIUM" | "LONG"): this;
+    blob(prefix?: "" | "TINY" | "MEDIUM" | "LONG"): this;
     /**
      * Set the type of the column to timestamp.
      * @returns {this}
@@ -101,7 +101,7 @@ export class DBForgeColumn {
      * @param {boolean} [value=true] Specifies whether the column should be unsigned.
      * @returns {this}
      */
-    unsigned(value: boolean): this;
+    unsigned(value?: boolean): this;
 
     /**
      * Make the column not nullable. By default, it will be `false`.
@@ -115,21 +115,21 @@ export class DBForgeColumn {
      * @param {boolean} [quote=true] Specifies whether the value should be quoted
      * @returns {this}
      */
-    defaultValue(value: any, quote: boolean): this;
+    defaultValue(value: any, quote?: boolean): this;
 
     /**
      * Set the default value of the column to the current timestamp. If onUpdate is set to true, the column will also be set to the current timestamp on update.
      * @param {boolean} [onUpdate=false] Specifies whether the column should be set to the current timestamp on update
      * @returns {this}
      */
-    defaultTimestamp(onUpdate: boolean): this;
+    defaultTimestamp(onUpdate?: boolean): this;
 
     /**
      * Make the column auto increment. By default, it will be `true`. If value is set to `false`, the column will not be auto increment.
      * @param {boolean} [value=true] Specifies whether the column should be auto increment
      * @returns {this}
      */
-    autoIncrement(value: boolean): this;
+    autoIncrement(value?: boolean): this;
 
     /**
      * Set a comment for the column. The comment will be quoted.
@@ -154,6 +154,12 @@ export class DBForgeColumn {
 }
 
 export class DBForge {
+
+        /**
+     * Create a new DBForge object.
+     * @returns {DBForge} a new DBForge object.
+     */
+    static create(): DBForge;
 
     /**
      * Reset the DBForge object. After each request, the DBForge object is also automatically reset.
@@ -181,7 +187,7 @@ export class DBForge {
      * @param {string} [comment=""] - The comment for the table.
      * @returns {string} The SQL query statement for creating the table.
      */
-    createTable(name: string, comment: string): string;
+    createTable(name: string, comment?: string): string;
 
     /**
      * Drop a table with the specified name if it exists.
@@ -210,7 +216,7 @@ export class DBForge {
      * Add a new column to the table with the given name.
      * If a callback is given, it will be called with the new column as an argument.
      * @param {string} name - The name of the column to add.
-     * @param {null | ((col: DBForgeColumn) => void)} [callback] - A callback to run with the new column.
+     * @param {null | ((col: DBForgeColumn) => void)} callback - A callback to run with the new column.
      * @returns {this}
      */
     addColumn(
@@ -304,8 +310,8 @@ export class DBForge {
     addFk(
         field: string,
         target: string,
-        del: string,
-        update: string
+        del?: string,
+        update?: string
     ): this
 
     /**
@@ -694,9 +700,9 @@ export class OrderByF {
      * @returns {this} The current instance to allow for method chaining.
      */
     ascCustom(
-        column: string,
+        column: string | undefined,
         when: { condition: string; priority: string | number }[],
-        defaultPriority: string | number | null,
+        defaultPriority?: string | number | null,
         ...data: any[]
     ): this;
 
@@ -713,9 +719,9 @@ export class OrderByF {
      * @returns {this} The current instance to allow for method chaining.
      */
     descCustom(
-        column: string,
+        column: string | undefined,
         when: { condition: string; priority: string | number }[],
-        defaultPriority: string | number | null,
+        defaultPriority?: string | number | null,
         ...data: any[]
     ): this;
 }
@@ -786,7 +792,7 @@ export class SetF {
      * @param {boolean} [unsafe=false] - Set to true if the value should not be escaped
      * @returns {this} The current instance to allow for method chaining.
      */
-    add(column: string, value: any, unsafe: boolean): this;
+    add(column: string, value: any, unsafe?: boolean): this;
     /**
      * Adds a SET clause to the query with an unescaped value.
      * @param {string} column - The column name to set
@@ -801,21 +807,21 @@ export class SetF {
      * @param {number} [value=1] - The amount to increment the column by. Defaults to 1.
      * @returns {this} The current instance to allow for method chaining.
      */
-    increment(column: string, value: number): this;
+    increment(column: string, value?: number): this;
     /**
      * Decrements the value of a specified column by a given amount.
      * @param {string} column - The column name to decrement.
      * @param {number} [value=1] - The amount to decrement the column by. Defaults to 1.
      * @returns {this} The current instance to allow for method chaining.
      */
-    decrement(column: string, value: number): this;
+    decrement(column: string, value?: number): this;
     /**
      * Adds multiple SET clauses to the query.
      * @param {Array<[string, any]>} data - An array of column name and value pairs to set.
      * @param {boolean} [unsafe=false] - Set to true if the values should not be escaped.
      * @returns {this} The current instance to allow for method chaining.
      */
-    addList(data: [string, any][], unsafe: boolean): this;
+    addList(data: [string, any][], unsafe?: boolean): this;
     /**
      * Adds multiple SET clauses to the query with unescaped values.
      * @param {Array<[string, any]>} data - An array of column name and value pairs to set.
@@ -873,7 +879,7 @@ export class QB {
      * @param {number} [offset=0] - The number of records to skip before starting to return records.
      * @returns {this} The current instance to allow for method chaining.
      */
-    limit(limit: number, offset: number): this;
+    limit(limit: number, offset?: number): this;
 
     /**
      * Adds a JOIN clause to the query.
