@@ -1,4 +1,4 @@
-import QB from "./lib/QB"
+import QB from "../lib/QB"
 
 test("Simple select *", () => {
     const res = QB

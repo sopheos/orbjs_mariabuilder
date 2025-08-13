@@ -1,4 +1,4 @@
-import DBForge from "./lib/DBForge";
+import DBForge from "../lib/DBForge";
 
 test("create", () => {
     expect(DBForge.create()).toBeInstanceOf(DBForge);
@@ -404,4 +404,16 @@ test("edge cases", () => {
     expect(db).toEqual("ALTER TABLE `Table` " +
     "\n\tADD COLUMN `hello` VARCHAR(255) NULL DEFAULT NULL," +
     "\n\tCHANGE COLUMN `Hey` `Hey` VARCHAR(255) NULL DEFAULT NULL;")
+})
+
+test("Add enum", () => {
+    const db = 
+    DBForge
+    .create()
+    .addColumn("hello", (col) => col.enum(["a", "b'c", "c"]))
+    .createTable("Table")
+
+    expect(db).toEqual("CREATE TABLE IF NOT EXISTS `Table` (" +
+    "\n\t`hello` ENUM('a','b''c','c') NULL DEFAULT NULL" +
+    "\n);")
 })

@@ -100,6 +100,11 @@ export default class DBForgeColumn {
         return this.type(prefix + "text");
     }
 
+    enum(enumList: string[]) {
+        enumList = enumList.map((value) => "'" + value.replaceAll("'", "''") + "'")
+        return this.type("enum", ...enumList);
+    }
+
     /**
      * Set the type of the column to blob. The prefix can be one of the following: `TINY`, `MEDIUM`, `LONG`.
      * If no prefix is given, it will be `BLOB` by default.

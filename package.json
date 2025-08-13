@@ -1,6 +1,6 @@
 {
     "name": "@sopheos/mariabuilder",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "A querry builder for mariadb",
     "license": "MIT",
     "author": "Sopheos <dev@sopheos.com>",
@@ -14,7 +14,9 @@
         "test": "tests",
         "doc": "docs"
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "test": "jest",
         "build": "(bash -c \"rm -r ./dist\" && tsc) || tsc"
@@ -36,12 +38,12 @@
         "mariadb"
     ],
     "dependencies": {
-        "mariadb": "^3.4.5",
-        "typescript": "^5.9.2"
+        "mariadb": "^3.4.5"
     },
     "devDependencies": {
         "@types/jest": "^30.0.0",
         "jest": "^30.0.5",
-        "ts-jest": "^29.4.1"
+        "ts-jest": "^29.4.1",
+        "typescript": "^5.9.2"
     }
 }

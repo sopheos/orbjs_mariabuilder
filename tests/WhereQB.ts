@@ -1,5 +1,5 @@
-import QB from "./lib/QB"
-import QBFrag from "./lib/QBFrag/QBFrag";
+import QB from "../lib/QB"
+import QBFrag from "../lib/QBFrag/QBFrag";
 
 test("Simple Where", () => {
     const res = QB

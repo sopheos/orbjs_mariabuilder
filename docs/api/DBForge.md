@@ -31,6 +31,7 @@ Here you can find all the methods attached to the DBForge class.
     - [.char(len)](#charlen)
     - [.varchar(len?)](#varcharlen)
     - [.text(prefix?)](#textprefix)
+    - [.enum(\[value1, ...\])](#enumvalue1-)
     - [.blob(prefix?)](#blobprefix)
     - [.timestamp()](#timestamp)
     - [.datetime()](#datetime)
@@ -273,6 +274,16 @@ Set the type to text. The prefix can be one of the following: `TINY`, `MEDIUM`, 
 DBForge
 .create()
 .addColumn("id", (col) => col.text("LONG"))
+```
+
+### .enum(\[value1, ...\])
+
+Set the type to enum with the values given. Automatically add the single quotes.
+
+```ts
+DBForge
+.create()
+.addColumn("id", (col) => col.enum(["value1", "value2"]))
 ```
 
 ### .blob(prefix?)
