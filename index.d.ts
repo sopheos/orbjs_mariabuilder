@@ -367,7 +367,7 @@ export class QBFrag {
     debug(db: Pool | Connection): string;
 }
 
-export class WhereHaveF {
+export class WhereHaveF extends QBFrag {
     /**
      * Initializes a new instance of the `WhereHaveF` class.
      *
@@ -672,7 +672,7 @@ export class WhereHaveF {
     groupEnd(): this;
 }
 
-export class OrderByF {
+export class OrderByF extends QBFrag {
     /**
      * Sets the columns to order by in ascending order
      * @param {...string} column the column(s) to order by
@@ -726,7 +726,7 @@ export class OrderByF {
     ): this;
 }
 
-export class JoinF {
+export class JoinF extends QBFrag {
      /**
      * Add an INNER JOIN to the query.
      * @param table The table to join.
@@ -763,7 +763,7 @@ export class JoinF {
     right(table: string, condition: string, ...values: any[]): this;
 }
 
-export class SelectF {
+export class SelectF extends QBFrag {
     /**
      * Selects the specified column(s) for the query.
      * @param {...string} columns - The column(s) to select.
@@ -784,7 +784,7 @@ export class SelectF {
     duplicate(): this;
 }
 
-export class SetF {
+export class SetF extends QBFrag {
      /**
      * Adds a SET clause to the query
      * @param {string} column - The column name to set
