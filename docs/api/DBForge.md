@@ -32,6 +32,7 @@ Here you can find all the methods attached to the DBForge class.
     - [.varchar(len?)](#varcharlen)
     - [.text(prefix?)](#textprefix)
     - [.enum(\[value1, ...\])](#enumvalue1-)
+    - [.json()](#json)
     - [.blob(prefix?)](#blobprefix)
     - [.timestamp()](#timestamp)
     - [.datetime()](#datetime)
@@ -284,6 +285,16 @@ Set the type to enum with the values given. Automatically add the single quotes.
 DBForge
 .create()
 .addColumn("id", (col) => col.enum(["value1", "value2"]))
+```
+
+### .json()
+
+Set the type to json.
+
+```ts
+DBForge
+.create()
+.addColumn("data", (col) => col.json()
 ```
 
 ### .blob(prefix?)

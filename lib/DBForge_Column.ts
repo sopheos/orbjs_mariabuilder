@@ -100,6 +100,14 @@ export default class DBForgeColumn {
         return this.type(prefix + "text");
     }
 
+    /**
+     * Set the type of the column to json.
+     * @returns {this}
+     */
+    json(): this {
+        return this.type("json");
+    }
+
     enum(enumList: string[]) {
         enumList = enumList.map((value) => "'" + value.replaceAll("'", "''") + "'")
         return this.type("enum", ...enumList);
@@ -173,6 +181,11 @@ export default class DBForgeColumn {
      * @returns {this}
      */
     defaultValue(value: any, quote: boolean = true): this {
+        if (value === null) {
+            this.defaultCol = value;
+            this.notNullCol = false;
+            return this
+        }
         if (quote && typeof value === "string") {
             this.defaultCol =
                 value !== "" ? "'" + value.replaceAll("'", "''") + "'" : "``";
