@@ -17,8 +17,8 @@ test("list set", () => {
     const res = QB
     .from("test")
     .set()
-    .addList([["id", 1], ["UnsafeList", 15]])
-    .addList([["id2", 1], ["UnsafeList2", 15]], true)
+    .addList({"id": 1, "UnsafeList": 15})
+    .addList({"id2": 1, "UnsafeList2": 15}, true)
     .getParent()
     .insert(false);
 
@@ -42,7 +42,7 @@ test("unsafe list set", () => {
     const res = QB
     .from("test")
     .set()
-    .listUnsafe([["id", 1], ["UnsafeList", 15]])
+    .listUnsafe({"id": 1, "UnsafeList": 15})
     .getParent()
     .insert(false);
 

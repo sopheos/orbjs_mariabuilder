@@ -32,7 +32,7 @@ test("Update", () => {
     .getParent()
     .update(false)
 
-    expect(res.getStatement()).toEqual("UPDATE INTO\n\ttest\nSET\n\tid = ?\nWHERE\n\tid = ?;");
+    expect(res.getStatement()).toEqual("UPDATE test\nSET\n\tid = ?\nWHERE\n\tid = ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 
@@ -47,7 +47,7 @@ test("Update ignore", () => {
     .getParent()
     .update(true)
 
-    expect(res.getStatement()).toEqual("UPDATE IGNORE INTO\n\ttest\nSET\n\tid = ?\nWHERE\n\tid = ?;");
+    expect(res.getStatement()).toEqual("UPDATE IGNORE test\nSET\n\tid = ?\nWHERE\n\tid = ?;");
     expect(res.getData()).toEqual([1, 1]);
 })
 

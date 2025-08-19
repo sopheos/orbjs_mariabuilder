@@ -242,7 +242,7 @@ export default class QB {
         const insert = "UPDATE" + (ignore ? " IGNORE" : "");
         const query = new QBFrag();
 
-        query.pushStatment(insert + ` INTO\n\t${this.from}`);
+        query.pushStatment(insert + ` ${this.from}`);
         query.merge(this.JoinF);
         query.merge(this.SetF);
         query.merge(this.whereF);
