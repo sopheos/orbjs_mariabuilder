@@ -261,7 +261,7 @@ export default class QB {
      *     while inserting the records.
      * @returns {QBFrag} A query fragment representing the SQL INSERT query for multiple records.
      */
-    insertAll(data: { [key: string]: any }[], ignore: boolean): QBFrag {
+    insertAll(data: object[], ignore: boolean): QBFrag {
         return this.batch(data, "INSERT" + (ignore ? " IGNORE" : ""));
     }
 
@@ -272,7 +272,7 @@ export default class QB {
      *     with key-value pairs representing column names and their corresponding values.
      * @returns {QBFrag} A query fragment representing the SQL REPLACE query for multiple records.
      */
-    replaceAll(data: { [key: string]: any }[]): QBFrag {
+    replaceAll(data: object[]): QBFrag {
         return this.batch(data, "REPLACE");
     }
 
@@ -285,7 +285,7 @@ export default class QB {
      *     "REPLACE".
      * @returns {QBFrag} A query fragment representing the SQL query for multiple records.
      */
-    private batch(data: { [key: string]: any }[], keyword: string): QBFrag {
+    private batch(data: object[], keyword: string): QBFrag {
         const query: QBFrag = new QBFrag();
         if (!data.length) return query;
 

@@ -44,25 +44,25 @@ export default class SetF extends QBFrag {
 
     /**
      * Adds multiple SET clauses to the query.
-     * @param {Array<[string, any]>} data - An array of column name and value pairs to set.
+     * @param {object} data - An object with column name and value pairs to set.
      * @param {boolean} [unsafe=false] - Set to true if the values should not be escaped.
      * @returns {this} The current instance to allow for method chaining.
      */
-    addList(data: [string, any][], unsafe: boolean = false): this {
-        for (const element of data) {
-            this.addValue(element[0], element[1], unsafe);
+    addList(data: object, unsafe: boolean = false): this {
+        for (const [k, v] of Object.entries(data)) {
+            this.addValue(k, v, unsafe);
         }
         return this;
     }
 
     /**
      * Adds multiple SET clauses to the query with unescaped values.
-     * @param {Array<[string, any]>} data - An array of column name and value pairs to set.
+     * @param {object} data - An object with of column name and value pairs to set.
      * @returns {this} The current instance to allow for method chaining.
      */
-    listUnsafe(data: [string, any][]): this {
-        for (const element of data) {
-            this.addValue(element[0], element[1], true);
+    listUnsafe(data: object): this {
+        for (const [k, v] of Object.entries(data)) {
+            this.addValue(k, v, true);
         }
         return this;
     }

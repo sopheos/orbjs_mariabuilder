@@ -32,9 +32,9 @@ Note that you can **exit** all subclasse using the method `.getParent()`, it is 
       - [.duplicate()](#duplicate)
   - [Set](#set)
     - [.add(column, value, unsafe?)](#addcolumn-value-unsafe)
-    - [.addList(\[column, value\], unsafe?)](#addlistcolumn-value-unsafe)
+    - [.addList(data, unsafe?)](#addlistdata-unsafe)
       - [.unsafe(column, value)](#unsafecolumn-value)
-    - [.listUnsafe(\[column, value\])](#listunsafecolumn-value)
+    - [.listUnsafe(data)](#listunsafedata)
     - [.increment(column, value?)](#incrementcolumn-value)
     - [.decrement(column, value?)](#decrementcolumn-value)
   - [Where \& Having](#where--having)
@@ -294,7 +294,7 @@ QB
 .add("name", "John");
 ```
 
-### .addList(\[column, value\], unsafe?)
+### .addList(data, unsafe?)
 
 Add multiple columns and values to the SET clause.
 
@@ -302,7 +302,7 @@ Add multiple columns and values to the SET clause.
 QB
 .from("table")
 .set()
-.addList([["name", "John"], ["age", 30]]);
+.addList({name: "john", age: 30});
 ```
 
 #### .unsafe(column, value)
@@ -316,7 +316,7 @@ QB
 .unsafe("name", "John");
 ```
 
-### .listUnsafe(\[column, value\])
+### .listUnsafe(data)
 
 Add multiple columns and values to the SET clause without escaping the values.
 
@@ -324,7 +324,7 @@ Add multiple columns and values to the SET clause without escaping the values.
 QB
 .from("table")
 .set()
-.listUnsafe([["name", "John"], ["age", 30]]);
+.listUnsafe({age: "age + 1"});
 ```
 
 ### .increment(column, value?)
