@@ -1,7 +1,17 @@
 import util from "node:util";
 import DBForgeColumn from "./DBForge_Column";
 
+interface FkEnum {
+    RESTRICT: "RESTRICT",
+    CASCADE: "CASCADE",
+    SET_NULL: "SET NULL",
+    NO_ACTION: "NO ACTION",
+}
+
 export default class DBForge {
+
+    static readonly FK_ACTION: FkEnum
+
     private columns: {
         add: DBForgeColumn[];
         drop: string[];
@@ -366,8 +376,8 @@ export default class DBForge {
     addFk(
         field: string,
         target: string,
-        del: string = "CASCADE",
-        update: string = "CASCADE"
+        del: keyof FkEnum = "CASCADE",
+        update: keyof FkEnum = "CASCADE",
     ): this {
         const target_array: string[] = target.split(".");
 
@@ -379,8 +389,8 @@ export default class DBForge {
             `CONSTRAINT \`%s_${field}_fk\`` +
             ` FOREIGN KEY (\`${field}\`)` +
             ` REFERENCES %s\`${target_array[0]}\` (\`${target_array[1]}\`)` +
-            ` ON DELETE ${del}` +
-            ` ON UPDATE ${update}`;
+            ` ON DELETE ${DBForge.FK_ACTION[del]}` +
+            ` ON UPDATE ${DBForge.FK_ACTION[update]}`;
 
         this.foreign.add.push(tmp);
         return this;

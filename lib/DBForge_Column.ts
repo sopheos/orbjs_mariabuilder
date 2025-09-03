@@ -54,6 +54,10 @@ export default class DBForgeColumn {
         return this.type(prefix + "int");
     }
 
+    uuid(): this {
+        return this.type("UUID")
+    }
+
     /**
      * Set the type of the column to float.
      * @returns {this}
