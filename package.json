@@ -1,6 +1,6 @@
 {
     "name": "@sopheos/mariabuilder",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "A querry builder for mariadb",
     "license": "MIT",
     "author": "Sopheos <dev@sopheos.com>",
@@ -44,6 +44,7 @@
         "@types/jest": "^30.0.0",
         "jest": "^30.0.5",
         "ts-jest": "^29.4.1",
+        "tsx": "^4.20.5",
         "typescript": "^5.9.2"
     }
 }
